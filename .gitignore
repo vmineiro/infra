@@ -1,0 +1,84 @@
+# Infrastructure Repository .gitignore
+
+# ============================================================================
+# Environment & Configuration Files
+# ============================================================================
+
+# Active environment files (never commit)
+*.env
+!*.env.example
+
+# Configuration files with secrets
+config.ini
+*.ini
+!*.ini.example
+
+# ============================================================================
+# Service Data Directories
+# ============================================================================
+
+# Gitea data
+gitea/data/
+gitea/config/
+
+# Portainer data
+portainer/data/
+portainer/config/
+
+# Service logs
+*/logs/
+*.log
+
+# Service databases
+*/data/
+*.db
+*.sqlite
+
+# ============================================================================
+# Backup & Temporary Files
+# ============================================================================
+
+# Backups that might contain secrets
+*.bak
+*.backup
+*~
+backups/
+
+# Docker volumes data (if extracted)
+volumes/
+
+# ============================================================================
+# macOS & Editor Files
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+
+# ============================================================================
+# Docker & Container Files
+# ============================================================================
+
+# Docker Compose override files (may contain local configs)
+docker-compose.override.yml
+docker-compose.*.local.yml
+
+# ============================================================================
+# Documentation Build Artifacts
+# ============================================================================
+
+# Generated documentation
+docs/_build/
+docs/.cache/
