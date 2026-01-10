@@ -8,12 +8,20 @@ This repository contains infrastructure service configurations that are reusable
 
 ## Services
 
+### Jenkins
+CI/CD automation server.
+- **Location**: `jenkins/`
+- **Description**: Open-source automation server for CI/CD pipelines
+- **Documentation**: [jenkins/SETUP.md](jenkins/SETUP.md)
+- **Status**: ⭐ ACTIVE - Primary CI/CD platform
+
 ### Gitea
 Self-hosted Git server for version control.
 - **Location**: `gitea/`
 - **Description**: Lightweight Git service with web UI
 - **Documentation**: [gitea/README.md](gitea/README.md)
 - **Status**: Available but optional (GitHub is currently primary)
+- **Archived Docs**: [gitea/archived/](gitea/archived/) - Legacy CI/CD documentation
 
 ### Portainer
 Container management UI for Docker deployments.
@@ -48,14 +56,21 @@ This infrastructure repository is separate from application code to:
 
 To deploy infrastructure services:
 
-1. **Gitea** (if needed):
+1. **Jenkins** (CI/CD - RECOMMENDED):
+   ```bash
+   cd jenkins/
+   docker-compose up -d
+   ```
+   See [jenkins/SETUP.md](jenkins/SETUP.md) for complete setup and configuration.
+
+2. **Gitea** (if needed):
    ```bash
    cd gitea/
    docker-compose up -d
    ```
    See [gitea/README.md](gitea/README.md) for configuration details.
 
-2. **Portainer** (if needed):
+3. **Portainer** (if needed):
    Follow the guide in [docs/PORTAINER_DEPLOYMENT_GUIDE.md](docs/PORTAINER_DEPLOYMENT_GUIDE.md)
 
 ## Maintenance
