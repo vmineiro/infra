@@ -1,0 +1,5 @@
+FROM jenkins/agent:alpine-jdk17
+
+USER root
+RUN apk add --no-cache nodejs npm docker-cli
+USER jenkins
