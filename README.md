@@ -16,12 +16,12 @@ CI/CD automation server.
 - **Status**: ⭐ ACTIVE - Primary CI/CD platform
 
 ### Gitea
-Self-hosted Git server for version control.
+~~Self-hosted Git server for version control.~~
 - **Location**: `gitea/`
 - **Description**: Lightweight Git service with web UI
-- **Documentation**: [gitea/README.md](gitea/README.md)
-- **Status**: Available but optional (GitHub is currently primary)
-- **Archived Docs**: [gitea/archived/](gitea/archived/) - Legacy CI/CD documentation
+- **Documentation**: [gitea/REMOVED.md](gitea/REMOVED.md)
+- **Status**: 🗑️ REMOVED (2026-01-20) - Replaced by Jenkins + GitHub
+- **Archived Docs**: [gitea/archived/](gitea/archived/) - Legacy documentation and configs
 
 ### Portainer
 Container management UI for Docker deployments.
@@ -63,14 +63,7 @@ To deploy infrastructure services:
    ```
    See [jenkins/SETUP.md](jenkins/SETUP.md) for complete setup and configuration.
 
-2. **Gitea** (if needed):
-   ```bash
-   cd gitea/
-   docker-compose up -d
-   ```
-   See [gitea/README.md](gitea/README.md) for configuration details.
-
-3. **Portainer** (if needed):
+2. **Portainer** (if needed):
    Follow the guide in [docs/PORTAINER_DEPLOYMENT_GUIDE.md](docs/PORTAINER_DEPLOYMENT_GUIDE.md)
 
 ## Maintenance
