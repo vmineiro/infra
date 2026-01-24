@@ -1,0 +1,49 @@
+# ============================================================================
+# Jenkins Agent - Python + Docker
+# ============================================================================
+#
+# Purpose: Jenkins agent with Python and Docker CLI for CI/CD tasks
+# Base: jenkins/agent:alpine-jdk17 (lightweight Alpine Linux)
+#
+# Installed:
+# - Python 3 + pip (for Python builds, testing)
+# - Docker CLI (for building/managing containers)
+# - Build tools (for compiling Python packages)
+#
+# Usage:
+#   docker build -f Dockerfile.python -t jenkins-python-agent:latest .
+#
+# ============================================================================
+
+FROM jenkins/agent:alpine-jdk17
+
+# Switch to root for installations
+USER root
+
+# Install Python, pip, Docker CLI, and build dependencies
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    python3-dev \
+    build-base \
+    docker-cli \
+    git \
+    bash \
+    curl \
+    libffi-dev \
+    openssl-dev
+
+# Create symlinks for python/pip (Alpine uses python3/pip3)
+RUN ln -sf /usr/bin/python3 /usr/bin/python && \
+    ln -sf /usr/bin/pip3 /usr/bin/pip
+
+# Verify installations
+RUN python --version && pip --version && docker --version
+
+# Switch back to jenkins user for security
+USER jenkins
+
+# Labels for identification
+LABEL maintainer="base-data-etl"
+LABEL description="Jenkins agent with Python and Docker CLI"
+LABEL version="1.0"

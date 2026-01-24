@@ -1,0 +1,40 @@
+# ============================================================================
+# Jenkins Agent - Node.js + Docker
+# ============================================================================
+#
+# Purpose: Jenkins agent with Node.js and Docker CLI for CI/CD tasks
+# Base: jenkins/agent:alpine-jdk17 (lightweight Alpine Linux)
+#
+# Installed:
+# - Node.js + npm (for frontend builds, JS testing)
+# - Docker CLI (for building/managing containers)
+#
+# Usage:
+#   docker build -f Dockerfile.node -t jenkins-node-agent:latest .
+#
+# ============================================================================
+
+FROM jenkins/agent:alpine-jdk17
+
+# Switch to root for installations
+USER root
+
+# Install Node.js, npm, and Docker CLI
+RUN apk add --no-cache \
+    nodejs \
+    npm \
+    docker-cli \
+    git \
+    bash \
+    curl
+
+# Verify installations
+RUN node --version && npm --version && docker --version
+
+# Switch back to jenkins user for security
+USER jenkins
+
+# Labels for identification
+LABEL maintainer="base-data-etl"
+LABEL description="Jenkins agent with Node.js and Docker CLI"
+LABEL version="1.0"
