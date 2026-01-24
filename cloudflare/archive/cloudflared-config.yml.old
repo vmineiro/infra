@@ -1,0 +1,12 @@
+tunnel: 5c221661-edd8-4264-a11d-bf12c0edd821
+credentials-file: ~/.cloudflared/5c221661-edd8-4264-a11d-bf12c0edd821.json
+
+ingress:
+  # CI/CD Platform (Jenkins) - Serve múltiplos projetos
+  - hostname: cicd.vitormineiro.com
+    service: http://192.168.1.74:8080
+    originRequest:
+      noTLSVerify: true
+
+  # Catch-all (obrigatório - retorna 404 para hostnames não configurados)
+  - service: http_status:404
