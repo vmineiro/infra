@@ -164,11 +164,11 @@ pipeline {
                     echo "═══════════════════════════════════════════════════════"
 
                     sh '''
-                        echo "\n📊 ESPAÇO EM DISCO ANTES DO CLEANUP:"
-                        df -h /var/lib/docker
-
-                        echo "\n📦 RESUMO DOCKER ANTES:"
+                        echo "\n📊 ESPAÇO EM DISCO DO HOST (via Docker):"
                         docker system df
+
+                        echo "\n💾 ESPAÇO DO JENKINS HOME:"
+                        df -h /var/jenkins_home
 
                         echo "\n🧹 INICIANDO LIMPEZA SEGURA..."
 
@@ -227,11 +227,11 @@ pipeline {
                             echo "✅ Nenhum workspace antigo para remover"
                         fi
 
-                        echo "\n📊 ESPAÇO EM DISCO APÓS CLEANUP:"
-                        df -h /var/lib/docker
-
-                        echo "\n📦 RESUMO DOCKER APÓS:"
+                        echo "\n📊 ESPAÇO DO HOST APÓS CLEANUP:"
                         docker system df
+
+                        echo "\n💾 ESPAÇO DO JENKINS HOME APÓS:"
+                        df -h /var/jenkins_home
                     '''
                 }
             }
@@ -332,8 +332,8 @@ Containers de Proteção:
 Imagens Docker Finais:
 \$(docker images --format "{{.Repository}}:{{.Tag}}\t{{.Size}}" 2>/dev/null)
 
-Espaço em Disco:
-\$(df -h /var/lib/docker)
+Espaço Jenkins Home:
+\$(df -h /var/jenkins_home)
 
 Resumo Docker:
 \$(docker system df)
