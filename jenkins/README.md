@@ -7,6 +7,9 @@ Configuração para instalar e executar Jenkins no servidor.
 Jenkins é um servidor de automação open-source usado para CI/CD. Esta pasta contém:
 - **docker-compose.yml** - Configuração Docker para executar Jenkins
 - **SETUP.md** - Guia completo de instalação e configuração
+- **pipelines/** - Pipelines Jenkins para gestão de sistema
+- **scripts/** - Scripts de manutenção e recuperação
+- **docs/** - Documentação sobre Docker cleanup e boas práticas
 
 ## Instalação Rápida
 
@@ -81,5 +84,33 @@ docker-compose up -d
 
 ## Documentação
 
+### Setup e Configuração
 - [Guia Completo de Setup](SETUP.md) - Instalação e configuração detalhada
 - [Jenkins Official Docs](https://www.jenkins.io/doc/)
+
+### Docker Cleanup e Manutenção
+- [Quick Reference](docs/QUICK-REFERENCE.md) - Referência rápida de comandos
+- [Recovery Checklist](docs/RECOVERY-CHECKLIST.md) - Checklist de recuperação de emergência
+- [Best Practices](docs/DOCKER-CLEANUP-BEST-PRACTICES.md) - Guia completo sobre Docker cleanup
+
+### Pipelines
+- [Safe Docker Cleanup](pipelines/safe-docker-cleanup.groovy) - Pipeline segura de limpeza
+- [Protect Critical Images](pipelines/protect-critical-images.groovy) - Pipeline de proteção
+
+### Scripts
+- [Verify Agent Images](scripts/verify-agent-images.sh) - Verificação de imagens
+- [Emergency Recovery](scripts/emergency-recovery.sh) - Recuperação de emergência
+- [Monitor Disk Space](scripts/monitor-disk-space.sh) - Monitorização de espaço
+
+## Problema Conhecido: Docker Cleanup
+
+Se a pipeline de cleanup apagou as imagens dos agentes Docker e o Jenkins não consegue mais criar agentes:
+
+**Recuperação Rápida:**
+```bash
+cd scripts
+chmod +x emergency-recovery.sh
+./emergency-recovery.sh
+```
+
+Consulte [RECOVERY-CHECKLIST.md](docs/RECOVERY-CHECKLIST.md) para instruções completas.
