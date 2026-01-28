@@ -7,7 +7,9 @@ pipeline {
         // Imagens críticas que devem SEMPRE estar presentes
         CRITICAL_IMAGES = '''
             jenkins/jenkins:lts
+            jenkins/agent:alpine-jdk17
             jenkins-node-agent:latest
+            jenkins-python-agent:latest
             jenkins/agent:latest
             jenkins/inbound-agent:latest
             jenkins/ssh-agent:latest
