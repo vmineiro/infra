@@ -11,8 +11,6 @@ pipeline {
             jenkins-node-agent:latest
             jenkins-python-agent:latest
             jenkins/agent:latest
-            jenkins/inbound-agent:latest
-            jenkins/ssh-agent:latest
         '''
 
         // Imagens críticas que NUNCA devem ser apagadas (regex patterns)
