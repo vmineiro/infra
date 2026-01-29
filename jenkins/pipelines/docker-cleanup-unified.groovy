@@ -165,8 +165,8 @@ pipeline {
                         echo "\n📊 ESPAÇO EM DISCO DO HOST (via Docker):"
                         docker system df
 
-                        echo "\n💾 ESPAÇO DO JENKINS HOME:"
-                        df -h /var/jenkins_home
+                        echo "\n💾 ESPAÇO USADO NO JENKINS HOME:"
+                        du -sh /var/jenkins_home 2>/dev/null || echo "Não foi possível calcular tamanho"
 
                         echo "\n🧹 INICIANDO LIMPEZA SEGURA..."
 
@@ -228,8 +228,8 @@ pipeline {
                         echo "\n📊 ESPAÇO DO HOST APÓS CLEANUP:"
                         docker system df
 
-                        echo "\n💾 ESPAÇO DO JENKINS HOME APÓS:"
-                        df -h /var/jenkins_home
+                        echo "\n💾 ESPAÇO USADO NO JENKINS HOME APÓS:"
+                        du -sh /var/jenkins_home 2>/dev/null || echo "Não foi possível calcular tamanho"
                     '''
                 }
             }
@@ -331,7 +331,7 @@ Imagens Docker Finais:
 \$(docker images --format "{{.Repository}}:{{.Tag}}\t{{.Size}}" 2>/dev/null)
 
 Espaço Jenkins Home:
-\$(df -h /var/jenkins_home)
+\$(du -sh /var/jenkins_home 2>/dev/null || echo "N/A")
 
 Resumo Docker:
 \$(docker system df)
