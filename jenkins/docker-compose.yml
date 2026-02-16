@@ -15,9 +15,25 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
     environment:
-      - JAVA_OPTS=-Dhudson.footerURL=http://192.168.1.74:8080
+      - JAVA_OPTS=-Dhudson.footerURL=http://192.168.1.74:8080 -Xmx768m -Xms512m -Dhudson.plugins.git.GitSCM.GIT_HTTP_TIMEOUT=120
 
     user: root  # Necessário para aceder ao Docker socket
+
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 1.2G
+        reservations:
+          cpus: '1.0'
+          memory: 768M
+
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/login || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: "120s"
 
 volumes:
   jenkins_home:
